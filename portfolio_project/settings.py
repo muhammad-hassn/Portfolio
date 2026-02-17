@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-t@=-9kh+s3=5qh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ["*", "antigravity-production.up.railway.app"]
+ALLOWED_HOSTS = ['antigravity-production.up.railway.app', 'localhost', '127.0.0.1', '*']
 
 
 # Application definition
