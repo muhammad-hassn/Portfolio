@@ -12,9 +12,10 @@ class Category(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    image = models.ImageField(upload_to='projects/')
+    image = models.ImageField(upload_to='projects/', blank=True, null=True)
     git_link = models.URLField(blank=True, null=True)
     live_link = models.URLField(blank=True, null=True)
+    link_url = models.URLField(blank=True, null=True, help_text="Main link for the project (Visit button)")
     categories = models.ManyToManyField(Category)
     date_created = models.DateField(auto_now_add=True)
     

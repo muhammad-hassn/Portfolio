@@ -7,7 +7,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_created')
+    list_display = ('title', 'link_url', 'date_created')
     search_fields = ('title', 'description')
     list_filter = ('categories',)
 
