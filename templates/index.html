@@ -101,8 +101,8 @@
 
 <!-- AI & Web Creations Section -->
 <section id="projects" class="py-24 bg-gray-50 dark:bg-dark-lighter relative overflow-hidden">
-    <!-- Subtle Background Particles for the section -->
-    <div id="project-particles" class="absolute inset-0 z-0 pointer-events-none opacity-50"></div>
+    <!-- Subtle Background removed as requested -->
+
     
     <div class="container mx-auto px-6 relative z-10">
         <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -123,9 +123,9 @@
         </div>
 
         <!-- Professional Project Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-20" id="project-grid">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 mb-20" id="project-grid">
             {% for project in projects %}
-            <div class="project-card group bg-white dark:bg-dark-lighter rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-800"
+            <div class="project-card group bg-white dark:bg-dark-lighter rounded-2xl md:rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow border border-gray-100 dark:border-gray-800"
                  data-categories="{% for cat in project.categories.all %}{{ cat.name }} {% endfor %}">
                 
                 <!-- Project Image (Clickable) -->
@@ -139,9 +139,9 @@
                         </div>
                     {% endif %}
                     
-                    <!-- Hover Overlay -->
-                    <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div class="px-6 py-2 bg-white/90 dark:bg-dark/90 text-primary font-bold rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-lg">
+                    <!-- Hover Overlay Simplified -->
+                    <div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <div class="px-6 py-2 bg-white/90 dark:bg-dark/90 text-primary font-bold rounded-full shadow-lg">
                             Explore Project
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                     <div class="flex items-center justify-between">
                         <a href="{% if project.link_url %}{{ project.link_url }}{% elif project.live_link %}{{ project.live_link }}{% else %}#{% endif %}" 
                            target="_blank" 
-                           class="inline-flex items-center text-sm font-bold text-white bg-primary px-6 py-2 rounded-full hover:bg-blue-600 transition-all shadow-lg shadow-primary/20 hover:scale-105">
+                           class="inline-flex items-center text-sm font-bold text-white bg-primary px-6 py-2 rounded-full hover:bg-blue-600 transition-all shadow-lg shadow-primary/20">
                             Visit Project <i class="fas fa-arrow-right ml-2 text-xs"></i>
                         </a>
                         

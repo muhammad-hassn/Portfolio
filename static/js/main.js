@@ -103,8 +103,8 @@ gsap.to('.headline-fade', {
     delay: 0.5
 });
 
-// Scroll Reveal Animations
-const sections = document.querySelectorAll('section');
+// Scroll Reveal Animations (Excluding projects as requested)
+const sections = document.querySelectorAll('section:not(#projects)');
 sections.forEach(section => {
     gsap.from(section.querySelectorAll('h2, .glass, .skill-category-card, .group'), {
         scrollTrigger: {
@@ -131,33 +131,13 @@ skillBars.forEach(bar => {
     });
 });
 
-// Project Section Antigravity Particles
-function initProjectParticles() {
-    const container = document.getElementById('project-particles');
-    if (!container) return;
-
-    for (let i = 0; i < 30; i++) {
-        const p = document.createElement('div');
-        p.className = 'absolute bg-primary/20 rounded-full blur-xl pointer-events-none';
-        const size = Math.random() * 100 + 50;
-        p.style.width = `${size}px`;
-        p.style.height = `${size}px`;
-        p.style.left = `${Math.random() * 100}%`;
-        p.style.top = `${Math.random() * 100}%`;
-        container.appendChild(p);
-
-        gsap.to(p, {
-            y: '-=100',
-            x: `+=${Math.random() * 40 - 20}`,
-            duration: Math.random() * 10 + 10,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut',
-            delay: Math.random() * 5
-        });
-    }
-}
-initProjectParticles();
+// Project Section Antigravity Particles - REMOVED AS REQUESTED
+// function initProjectParticles() {
+//     const container = document.getElementById('project-particles');
+//     if (!container) return;
+//     ...
+// }
+// initProjectParticles();
 
 // Project Filtering Logic
 const filterBtns = document.querySelectorAll('.filter-btn');
@@ -167,12 +147,14 @@ function filterProjects(filter) {
     projectCards.forEach(card => {
         if (filter === 'all') {
             card.style.display = 'block';
-            gsap.fromTo(card, { opacity: 0, scale: 0.9, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, clearProps: "all" });
+            card.style.opacity = '1';
+            card.style.transform = 'none';
         } else {
             const categories = card.getAttribute('data-categories').toLowerCase();
             if (categories.includes(filter.toLowerCase())) {
                 card.style.display = 'block';
-                gsap.fromTo(card, { opacity: 0, scale: 0.9, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, clearProps: "all" });
+                card.style.opacity = '1';
+                card.style.transform = 'none';
             } else {
                 card.style.display = 'none';
             }
@@ -198,7 +180,7 @@ if (allBtn) {
     projectCards.forEach(card => card.style.display = 'block');
 }
 
-// Hover Tilt Effect for Project Cards
+// Hover Effect for Project Cards (Disabled tilt as requested)
 projectCards.forEach(card => {
     // Whole-card Click Navigation
     card.addEventListener('click', (e) => {
@@ -209,38 +191,5 @@ projectCards.forEach(card => {
         if (link) {
             window.open(link, '_blank');
         }
-    });
-
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = (centerY - y) / 15;
-        const rotateY = (x - centerX) / 15;
-
-        gsap.to(card, {
-            rotateX: rotateX,
-            rotateY: rotateY,
-            scale: 1.05,
-            duration: 0.5,
-            ease: 'power2.out',
-            transformPerspective: 1000,
-            boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.25)'
-        });
-    });
-
-    card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-            rotateX: 0,
-            rotateY: 0,
-            scale: 1,
-            duration: 0.5,
-            ease: 'power2.out',
-            boxShadow: '0 0px 0px 0px rgba(0,0,0,0)'
-        });
     });
 });
